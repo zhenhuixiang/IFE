@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务一：表单（一）单个表单项的检验</title>
+</head>
+<style type="text/css">
+	*{
+		font-family: "微软雅黑";
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+	input{outline:none}
+	button{outline: none}
+	
+	#wrapper{
+		width: 450px;
+		height: 200px;
+		margin: 100px auto;
+	}
+	#text{
+		display: inline-block;
+		width: 40px;
+		height: 30px;
+		line-height: 30px;
+		font-weight: bold;
+		font-size: 16px;
+		margin-right: 5px;
+	}
+	#input{
+		width: 250px;
+		height: 30px;
+		border: 1px solid #cccccc;
+		border-radius: 5px;
+		padding-left: 5px;
+		margin-right:5px; 
+	}
+	#confirm{
+		width: 50px;
+		height: 32px;
+		color: #fff;
+		background: #2e78b9;
+		border: 1px solid #2e78b9;
+		border-radius: 5px;
+	}
+	#tip{
+		font-size: 12px;
+		margin-left: 53px;
+	}
+	#confirm:active{
+		background: #6cace4;
+	}
+</style>
+<body>
+	<div id="wrapper">
+		<div>
+			<text id="text">名称</text>
+			<input type="text" id="input">
+			<button id="confirm">验证</button>
+		</div>
+		<div>
+			<text id="tip">必填，长度为4~16个字符</text>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var input = document.getElementById('input');
+	var confirm = document.getElementById('confirm');
+	var tip = document.getElementById('tip');
+	//验证成功调用函数
+	function success(){
+		input.style = "border:#74c25e solid 1px";
+		tip.style = "color:#74c25e";
+		tip.innerHTML = "名称格式正确";
+	}
+	//验证失败调用函数
+	function fail(){
+		input.style = "border:#de000f solid 1px";
+		tip.style = "color:#de000f";
+		tip.innerHTML = "必填，长度为4~16个字符";
+	}
+	confirm.onclick = function confirm() {
+		var length = input.value.replace(/[^\x00-\xff]/g,"aa").length;//对双字符（中文、中文字符）进行替换，再计算字符长度
+		//进行验证，给出验证结果
+		if(length>16||length<4){
+			fail();
+			if(length==0){
+				tip.innerHTML = "姓名不能为空";
+			}else if(length>16){
+				tip.innerHTML = "长度为4~16个字符";
+			}else if(length<4){
+				tip.innerHTML = "长度为4~16个字符";
+			}
+		}else{
+			success();
+		};
+	}
+</script>
