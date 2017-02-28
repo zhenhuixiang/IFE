@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务二：表单（二）多个表单项的动态校验</title>
+</head>
+<style type="text/css">
+	*{
+		font-family: "微软雅黑";
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+	button{outline: none}
+	
+	#wrapper{
+		width: 383px;
+		margin: 100px auto;
+	}
+	.option{
+		height: 65px;
+	}
+	.text{
+		display: inline-block;
+		width: 60px;
+		height: 30px;
+		text-align: right;
+		line-height: 30px;
+		font-weight: bold;
+		font-size: 12px;
+		margin-right: 5px;
+	}
+	input{
+		width: 300px;
+		height: 30px;
+		border: 1px solid #cccccc;
+		border-radius: 3px;
+		padding-left: 5px;
+		margin-top: 10px;
+		margin-right:5px; 
+	}
+	.tip{
+		font-size: 12px;
+		color: #888;
+		margin-left: 73px;
+	}
+	#submit{
+		width: 60px;
+		height: 32px;
+		float: right;
+		color: #fff;
+		background: #2e78b9;
+		border: 1px solid #2e78b9;
+		border-radius: 3px;
+		margin-right: 7px;
+	}
+	#submit:active{
+		background: #6cace4;
+	}
+</style>
+<body>
+	<div id="wrapper">
+		<div class="option" id="name">
+			<div class="option_item">
+				<text class="text">名称</text>
+				<input type="text"/>
+			</div>
+			<div class="tip">
+				<text>必填，长度为4~16个字符</text>
+			</div>
+		</div>
+		<div class="option" id="password">
+			<div class="option_item">
+				<text class="text">密码</text>
+				<input type="text"/>
+			</div>
+			<div class="tip">
+				<text>以字母开头，长度在6~18之间，只能包含字符、数字和下划线</text>
+			</div>
+		</div>
+		<div class="option" id="confirm">
+			<div class="option_item">
+				<text class="text">密码确认</text>
+				<input type="text"/>
+			</div>
+			<div class="tip">
+				<text>再次输入相同密码</text>
+			</div>
+		</div>
+		<div class="option" id="email">
+			<div class="option_item">
+				<text class="text">电子邮箱</text>
+				<input type="text"/>
+			</div>
+			<div class="tip">
+				<text>输入您的邮箱</text>
+			</div>
+		</div>
+		<div class="option" id="num">
+			<div class="option_item">
+				<text class="text">手机</text>
+				<input type="text"/>
+			</div>
+			<div class="tip">
+				<text>输入您的手机号</text>
+			</div>
+		</div>
+		<button id="submit">提交</button>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var inputArr = document.getElementsByTagName('input');
+	var submit = document.getElementById('submit');
+	var tipArr = document.getElementsByClassName('tip');
+	var funArr = [];
+	//验证成功调用函数
+	function success(input,tip){
+		input.style = "border:#74c25e solid 1px";
+		tip.style = "color:#74c25e";
+	}
+	//验证失败调用函数
+	function fail(input,tip){
+		input.style = "border:#de000f solid 1px";
+		tip.style = "color:#de000f";
+	}
+	//各个验证
+	funArr[0] = function(input,tip){
+		var length = input.value.replace(/[^\x00-\xff]/g,"aa").length;//对双字符（中文、中文字符）进行替换，再计算字符长度
+		if(length>16||length<4){
+			fail(input,tip);
+			if(length==0){
+				tip.innerHTML = "姓名不可为空";
+			}else if(length>16){
+				tip.innerHTML = "长度应为4~16个字符";
+			}else if(length<4){
+				tip.innerHTML = "长度应为4~16个字符";
+			}
+			return false;
+		}else{
+			success(input,tip);
+			tip.innerHTML = "名称可用";
+			return true;
+		};
+	}
+	funArr[1] = function(input,tip){
+		var mm = /^[a-zA-Z]\w{5,17}$/;
+		var str = input.value;
+		if ( input.value.length == 0 ) {
+			fail(input,tip);
+			tip.innerHTML = "密码不可为空";
+			return false;
+		}else{
+			if( mm.test(str) ){
+				success(input,tip);
+				tip.innerHTML = "密码可用";
+				return true;
+			}else{
+				fail(input,tip);
+				tip.innerHTML = "密码格式不正确";
+				return false;
+			};
+			
+		}
+	}
+	funArr[2] = function(input,tip){
+		if ( input.value.length == 0 ) {
+			fail(input,tip);
+			tip.innerHTML = "密码不可为空";
+			return false;
+		}else{
+			if(input.value == inputArr[1].value){
+				success(input,tip);
+				tip.innerHTML = "密码输入一致";
+				return true;
+			}else{
+				fail(input,tip);
+				tip.innerHTML = "密码输入不一致";
+				return false;
+			}
+		}
+	}
+	funArr[3] = function(input,tip){
+		var yx = /^[a-z0-9]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?$/i;
+		var str = input.value;
+		if ( yx.test(str) ) {
+			success(input,tip);
+			tip.innerHTML = "邮箱格式正确";
+			return true;
+		}else{
+			fail(input,tip);
+			tip.innerHTML = "邮箱格式不正确";
+			return false;
+		}
+	}
+	funArr[4] = function(input,tip){
+		var sjh = /^1(3|4|5|7|8)\d{9}$/;
+		var str = input.value;
+		if ( sjh.test(str) ) {
+			success(input,tip);
+			tip.innerHTML = "手机格式正确";
+			return true;
+		}else{
+			fail(input,tip);
+			tip.innerHTML = "手机格式不正确";
+			return false;
+		}
+	}
+	//对tip进行隐藏
+	for (var i = 0; i < tipArr.length; i++) {
+		tipArr[i].style.display="none";
+	}
+	//操作
+	for(let i = 0; i < inputArr.length; i++ ){
+		//获得焦点后进行的操作
+		inputArr[i].onfocus = function inputFocus(e) {
+			tipArr[i].style.display="block";
+		}
+		//失去焦点后进行的操作
+		inputArr[i].onblur = function inputBlur(e) {
+			tipArr[i].style.display="none";
+			funArr[i](inputArr[i],tipArr[i]);
+		}
+	}
+	submit.onclick = function(){
+		var status = true;
+		//所有都检查一遍
+		for (let i = 0; i < funArr.length; i++) {
+			if( !funArr[i](inputArr[i],tipArr[i]) ){
+				status = false;
+			};
+		}
+		if( status ){
+			alert("提交成功");
+		}else{
+			alert("提交失败");
+		}
+	}
+
+
+</script>
