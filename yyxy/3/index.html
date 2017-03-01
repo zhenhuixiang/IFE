@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务三：表单（三）联动</title>
+</head>
+<style type="text/css">
+	#stu_in option,#stu_out option{
+		font-size: 12px;
+	}
+	#stu_in,#stu_out{
+		display: block;
+		margin-top: 20px;
+	}
+	select{
+		display: inline-block;
+		margin-left: 10px;
+	}
+	form{
+		width: 300px;
+		height: 100px;
+		margin: 100px auto 0 auto;
+	}
+</style>
+<body>
+	<form>
+		<label><input name="type" type="radio" value="in"  class="type"/>在校生 </label> 
+		<label><input name="type" type="radio" value="out"  class="type"/>非在校生 </label>
+
+		<label id="stu_in" style="display:none;">
+			<span>学校</span>
+			<select name="city" id="city">
+			</select>
+			<select name="sch" id="sch">
+			</select>
+		</label>
+
+		<label id="stu_out" style="display:none;">
+			<span>就业单位</span>
+			<input type="text"/>
+		</label>
+	</form>
+</body>
+</html>
+<script type="text/javascript">
+	var type = document.getElementsByClassName('type');
+	var stu_in = document.getElementById('stu_in');
+	var stu_out = document.getElementById('stu_out');
+	var cityEle = document.getElementById('city');
+	var schEle = document.getElementById('sch');
+	var data = {
+		'北京':[
+			'北京大学',
+			'清华大学'
+		],
+		'湖北':[
+			'武汉大学',
+			'华中科技大学'
+		],
+		'上海':[
+			'复旦大学',
+			'上海交通大学'
+		]
+	}
+	//对选学生类型添加事件
+	for (let i = 0; i < type.length; i++) {
+		type[i].onclick = function(){
+			if(this.value == 'in'){
+				stu_in.style.display = "block";
+				stu_out.style.display = "none";
+			}
+			else if(this.value == 'out'){
+				stu_out.style.display = "block";
+				stu_in.style.display = "none";
+			}
+		}
+	}
+	//城市初始化
+	var city_inner = '';
+	for (var city in data) {
+		city_inner += '<option value="'+city+'">'+city+'</option>'
+		console.log(city);
+	}
+	cityEle.innerHTML = city_inner;
+	//学校初始化
+	var sch_inner = '';
+	for (var index in data['北京']) {
+		sch_inner += '<option value="'+data['北京'][index]+'">'+data['北京'][index]+'</option>'
+	}
+	schEle.innerHTML = sch_inner;
+	//选择城市事件
+	cityEle.onchange = function(e){
+		var city = e.target.value;
+		var sch_inner = '';
+		for (var index in data[city]) {
+			sch_inner += '<option value="'+data[city][index]+'">'+data[city][index]+'</option>'
+		}
+		schEle.innerHTML = sch_inner;
+	}
+</script>
