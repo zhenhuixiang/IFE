@@ -1,0 +1,68 @@
+@import url(./animation.css);
+.introduction{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 350px;
+  height: 480px;
+  background: #eaeade;
+  margin: 20px 0 0 25px;
+}
+/*
+ * image-info-wapper
+ */
+.image-info-wapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width:350px;
+  height: 330px;
+  background: #eaeade;
+}
+
+#cd{
+  width: 180px; 
+  height: 180px;
+  border-radius: 50%;
+  margin-top: 20px;
+  box-shadow: 0px 0px 15px #ccc;
+  animation: roundRotation 10s linear infinite;
+  animation-play-state: running;
+}
+
+.name{
+  margin-top: 10px;
+  text-align: center;
+}
+
+.singer{
+  margin-top: 10px;
+}
+
+/*
+ * image-info-wapper
+ */
+.play-turn-wrapper{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 350px;
+  height: 110px;
+  background: #f7f7e8;
+}
+
+.play-turn-wrapper span{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+}
+
+.play-turn-wrapper .icon{
+  width: 60px;
+  height: 60px;
+  color: #888;
+}
+
+

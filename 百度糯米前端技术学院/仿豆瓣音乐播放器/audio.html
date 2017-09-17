@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>audioPlayer</title>
+  <link rel="stylesheet" type="text/css" href="./css/common.css">
+  <link rel="stylesheet" type="text/css" href="./css/controler.css">
+  <link rel="stylesheet" type="text/css" href="./css/information.css">
+  <script type="text/javascript" src="./js/iconfont.js"></script>
+</head>
+<body>
+<div id="container" class="container">
+  <div class="controler">
+    <div class="play-list">
+      <div class="searchwrapper">
+        <input type="text" name="search" id="searchinput">
+        <button id="searchbtn">搜索</button>
+      </div>
+      <ul class="f5"></ul>
+    </div>
+    <div class="time-volume-wrapper">
+      <div class="time">
+        <span id="nowtime" class="f5 col-g1">time</span>
+        <audio src="./songs/曹格 - 背叛.mp3" preload="metadata"></audio>
+        <div class="music-volume-wrapper">
+          <div class="music-len">
+            <span class="music-len-top"></span>
+            <span class="music-len-bottom"></span>
+          </div>
+          <div class="volume-len">
+            <span class="volume-icon" >
+              <svg id="last" class="icon" aria-hidden="true">
+                  <use xlink:href="#icon-volume-low"></use>
+              </svg>
+            </span>
+            <span class="volume-len-top"></span>
+            <span class="volume-len-bottom"></span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="introduction">
+    <div class="image-info-wapper">
+        <img id="cd" src="https://img1.doubanio.com/view/site/large/public/5c5b6238cffb4ab.jpg" alt="">
+        <span id="name" class="name f2">name</span>
+        <span id="singer" class="singer f4">singer</span>
+    </div>
+    <div class="play-turn-wrapper">
+      <span class="last">
+        <svg id="last" class="icon" aria-hidden="true">
+            <use xlink:href="#icon-song-last"></use>
+        </svg>
+      </span>
+      <span class="paly-and-pause">
+        <svg id="playandpause" class="icon" aria-hidden="true">
+            <use xlink:href="#icon-song-play"></use>
+        </svg>
+      </span>
+      <span class="next">
+        <svg id="next" class="icon" aria-hidden="true">
+            <use xlink:href="#icon-song-next"></use>
+        </svg>
+      </span>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="./js/main.js"></script>
+</body>
+</html>

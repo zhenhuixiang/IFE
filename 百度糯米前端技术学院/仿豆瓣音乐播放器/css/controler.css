@@ -1,0 +1,145 @@
+.controler{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 500px;
+  height: 480px;
+  background: #f7f7e8;
+  margin: 20px 0 0 20px;
+}
+/*
+ * play-list
+ */
+.play-list{
+  height: 350px;
+  background: #f7f7e8;
+}
+
+.searchwrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#searchinput{
+  width: 365px;
+  height: 20px;
+  margin: 16px 0 10px 20px;
+}
+
+#searchinput:focus{
+  outline-color: #d5d6c4;
+}
+
+#searchbtn{
+  color: #fff;
+  background: #d5d6c4;
+  border: 0;
+  width: 50px;
+  height: 24px;
+  margin: 16px 35px 10px 0;
+  box-shadow: 0 0 3px #ccc;
+}
+
+ul{ 
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+li{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc; 
+  height: 30px;
+  line-height: 30px;
+  margin-top: 3px;
+}
+
+li span{
+  margin: 0 20px;
+}
+/*
+ * time-volume-wrapper
+ */
+.time-volume-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+  height: 110px;
+  background: #f7f7e8;
+}
+
+.time{
+  width: 500px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+#nowtime{
+  width: 40px;
+  text-align: center;
+}
+
+.music-volume-wrapper{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.music-len{
+  display: flex;
+  width: 360px;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.music-len-top{
+  position: absolute;
+  width: 0px;
+  height: 2px;
+  background: #d5d6c4;
+  z-index: 10;
+}
+
+.music-len-bottom{
+  position: absolute;
+  width: 360px;
+  height: 2px;
+  background: #e5e5e5;
+}
+
+.volume-len{
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 10px;
+  width: 60px;
+}
+
+.volume-icon{
+  width: 1.4em;
+  height: 1.4em;
+}
+
+.volume-len-top{
+  position: absolute;
+  left: 25px;
+  width: 0px;
+  height: 2px;
+  background: #d5d6c4;
+  z-index: 10;
+}
+
+.volume-len-bottom{
+  position: absolute;
+  left: 25px;
+  width: 60px;
+  height: 2px;
+  background: #e5e5e5;
+}
